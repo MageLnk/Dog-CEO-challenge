@@ -1,1 +1,1 @@
-// No hay components generales aún
+export { default as SelectLanguage } from "./SelectLanguage/";

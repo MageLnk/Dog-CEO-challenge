@@ -1,3 +1,4 @@
+// Components
 import HeaderOptions from "./HeaderOptions";
 import Search from "./Search";
 import Logo from "./Logo";
