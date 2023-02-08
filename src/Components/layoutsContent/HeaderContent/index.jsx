@@ -1,17 +1,20 @@
-import Logo from "./Logo";
+import HeaderOptions from "./HeaderOptions";
 import Search from "./Search";
+import Logo from "./Logo";
 // Style
 import "./style.css";
 // App
 const HeaderContent = () => {
   return (
     <div className="header-content-container">
-      <Logo />
-      <Search />
+      <div className="header-logo">
+        <Logo />
+      </div>
+      <div className="header-input">
+        <Search />
+      </div>
       <div className="header-nav-options">
-        <span>Buscar</span>
-        <span>Favoritos</span>
-        <span>ES/EN</span>
+        <HeaderOptions />
       </div>
     </div>
   );

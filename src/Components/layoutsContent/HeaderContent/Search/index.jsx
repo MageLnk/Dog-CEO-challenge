@@ -2,11 +2,7 @@
 import "./style.css";
 // App
 const Search = () => {
-  return (
-    <div className="search-container">
-      <input placeholder="Escriba raza o sub-raza"></input>
-    </div>
-  );
+  return <input className="search-input" placeholder="Escriba raza o sub-raza"></input>;
 };
 
 export default Search;

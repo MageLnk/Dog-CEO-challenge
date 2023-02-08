@@ -6,11 +6,9 @@ import "./style.css";
 // App
 const Logo = () => {
   return (
-    <div className="header-img-container">
-      <Link to="/">
-        <img src={img} alt="Logo" />
-      </Link>
-    </div>
+    <Link to="/">
+      <img className="img-logo" src={img} alt="Logo" />
+    </Link>
   );
 };
 
