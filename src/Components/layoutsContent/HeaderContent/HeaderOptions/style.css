@@ -1,0 +1,8 @@
+.header-options-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header-option-active {
+    color: var(--text-special-color-important);
+}

@@ -1,0 +1,7 @@
+.language-options-container .language:hover{
+    cursor: pointer;
+}
+.language-options-container .language-selected{
+    text-decoration: underline;
+    color: var(--text-special-color-important);
+}
