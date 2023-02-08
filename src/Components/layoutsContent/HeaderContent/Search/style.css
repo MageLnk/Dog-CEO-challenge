@@ -1,5 +1,12 @@
 .search-input {
-    width: 40%;
+    width: 60%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+}
+
+.search-input-xs {
+    width: 70%;
     padding: 0.5rem;
     border-radius: 8px;
     border: none;

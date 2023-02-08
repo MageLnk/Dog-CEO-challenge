@@ -9,7 +9,11 @@
 }
 
 .header-content-container .header-logo {
-    width: 2.5rem;
+    display: block;
+    max-width:40px;
+    max-height:95px;
+    width: auto;
+    height: auto;
     padding: 0 1rem 0 1rem;
 }
 .header-content-container .header-input {
@@ -19,6 +23,27 @@
 }
 .header-content-container .header-nav-options {
     width: 15rem;
+    padding: 0 1rem 0 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* XS/Mobile Size*/
+.header-content-container .header-logo-xs {
+    display: block;
+    max-width:40px;
+    max-height:95px;
+    width: auto;
+    height: auto;
+    padding: 0 1rem 0 1rem;
+}
+.header-content-container .header-input-xs {
+    width: 25rem;
+    padding: 0 1rem 0 1rem;
+    text-align: center;
+}
+.header-content-container .header-nav-options-xs {
+    width: 5rem;
     padding: 0 1rem 0 1rem;
     text-align: center;
     font-weight: 600;

@@ -8,6 +8,10 @@
     justify-content: flex-end;
 }
 
-.footer-content-container span{
+.footer-content-container .footer-span{
     padding: 0 2rem 0 0;
+}
+.footer-content-container .footer-span-xs{
+    padding: 0 2rem 0 0;
+    font-size: 12px;
 }

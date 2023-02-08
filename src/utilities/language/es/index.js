@@ -1,12 +1,17 @@
 const es = {
   Components: {
-    HeaderContent: {
-      Search: {
-        placeholder: "Escriba el tipo de raza o sub-raza del perro",
+    layoutsContent: {
+      HeaderContent: {
+        Search: {
+          placeholder: "Escriba el tipo de raza o sub-raza del perro",
+        },
+        HeaderOptions: {
+          spanSearch: "Buscar",
+          spanFavorites: "Favoritos",
+        },
       },
-      HeaderOptions: {
-        spanSearch: "Buscar",
-        spanFavorites: "Favoritos",
+      FooterContent: {
+        span: "Página creada por poderoso MageLink como prueba técnica utilizando la API de Dog CEO.",
       },
     },
   },
