@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home, Error404 } from "./Pages/";
 // Layouts
 import { Header, Footer } from "./Layouts/";
+// Style
+import "./App.css";
 // App
 const App = () => {
   return (

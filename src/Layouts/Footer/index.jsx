@@ -2,7 +2,7 @@ import { FooterContent } from "../../Components/layoutsContent/";
 // App
 const Footer = () => {
   return (
-    <div>
+    <div className="footer-layout-container">
       <FooterContent />
     </div>
   );

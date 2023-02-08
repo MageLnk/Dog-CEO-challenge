@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+:root {
+  --bg-light-color: #F2F5FB;
+  --bg-dark-color: #20345A;
+  --bg-pets-color: #B9D478;
+  --bg-white-color: #FFFFFF;
+  --text-light-color: #FFFFFF;
+  --text-dark-color: #222732;
+  --text-special-color:#003473; 
+}
+
+.header-layout-container {
+  grid-area: header;
+}
+
+.home-page-container {
+  grid-area: main-content;
+}
+
+.error-404-page-container {
+  grid-area: main-content;
+}
+
+.footer-layout-container {
+  grid-area: footer;
+}
+
+.app-container {
+  display: grid;
+  min-height: 100vh;
+  height: auto;
+  width: 100%;
+  grid-template-areas:
+    "header"
+    "main-content"
+    "footer";
+  grid-template-rows: 4rem 96% 5rem;
+  grid-template-columns: 100%;
+}
