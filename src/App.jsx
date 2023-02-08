@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // Pages
-import { Home, Error404 } from "./Pages/";
+import { Home, SearchPet, FavoritesPets, Error404 } from "./Pages/";
 // Layouts
 import { Header, Footer } from "./Layouts/";
 // Style
@@ -14,6 +14,9 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/search" element={<SearchPet />} />
+          <Route path="/favorites" element={<FavoritesPets />} />
+
           <Route path="*" element={<Error404 />} />
         </Routes>
 

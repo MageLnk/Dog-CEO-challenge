@@ -27,6 +27,12 @@ a:active {
 .home-page-container {
   grid-area: main-content;
 }
+.favorites-pets-page-container{
+  grid-area: main-content;
+}
+.search-pet-page-container{
+  grid-area: main-content;
+}
 
 .error-404-page-container {
   grid-area: main-content;
