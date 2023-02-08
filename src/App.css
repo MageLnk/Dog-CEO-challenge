@@ -17,11 +17,15 @@ a:active {
   --bg-white-color: #FFFFFF;
   --text-light-color: #FFFFFF;
   --text-dark-color: #222732;
-  --text-special-color:#003473; 
+  --text-special-color:#003473;
+  --text-special-color-important:#0051b4;
 }
 
 .header-layout-container {
   grid-area: header;
+}
+.footer-layout-container {
+  grid-area: footer;
 }
 
 .home-page-container {
@@ -36,10 +40,6 @@ a:active {
 
 .error-404-page-container {
   grid-area: main-content;
-}
-
-.footer-layout-container {
-  grid-area: footer;
 }
 
 .app-container {

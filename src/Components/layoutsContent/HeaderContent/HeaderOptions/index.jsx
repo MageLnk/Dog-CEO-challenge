@@ -1,16 +1,16 @@
+import { NavLink } from "react-router-dom";
 // Style
-import { Link } from "react-router-dom";
 import "./style.css";
 // App
 const HeaderOptions = () => {
   return (
     <div className="header-options-container">
-      <Link to={"/search"}>
+      <NavLink to={"/search"} className={({ isActive }) => (isActive ? "header-option-active" : "")}>
         <span>Buscar</span>
-      </Link>
-      <Link to={"/favorites"}>
+      </NavLink>
+      <NavLink to={"/favorites"} className={({ isActive }) => (isActive ? "header-option-active" : "")}>
         <span>Favoritos</span>
-      </Link>
+      </NavLink>
 
       <span>ES/EN</span>
     </div>
