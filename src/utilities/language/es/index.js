@@ -1,5 +1,15 @@
 const es = {
   Components: {
+    pagesContent: {
+      HomeContent: {
+        title: "Bienvenido a Dog-CEO",
+        subtitle: "El mejor sitio para adoptar a tu futuro compañero de vida peludo",
+        ImagesDogsDeploy: {
+          title: "¡Empieza tu búsqueda ahora!",
+          subtitle: "¡No pierdas más el tiempo y encuentra a tu mejor amigo!",
+        },
+      },
+    },
     layoutsContent: {
       HeaderContent: {
         Search: {
@@ -8,6 +18,9 @@ const es = {
         HeaderOptions: {
           spanSearch: "Buscar",
           spanFavorites: "Favoritos",
+          Mobile: {
+            spanMenu: "Menú",
+          },
         },
       },
       FooterContent: {

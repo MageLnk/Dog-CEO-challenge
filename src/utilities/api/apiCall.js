@@ -4,7 +4,7 @@ const apiCall = async ({ url, method = "get", body, headers }) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    Promise.reject(error);
+    throw error;
   }
 };
 
