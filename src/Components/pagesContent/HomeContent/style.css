@@ -3,4 +3,15 @@
     height: 100%;
     background-color: var(--bg-white-color);
     color: var(--text-dark-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+.home-content-container .home-wellcome-title{
+    font-size: 36px;
+}
+.home-content-container .home-wellcome-subtitle{
+    margin: 0 0 2rem 0;
+}
+

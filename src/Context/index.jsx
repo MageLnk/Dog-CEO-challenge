@@ -1,16 +1,19 @@
 // Providers
-import GeneralContext from "./GeneralContext/Provider";
+import ApiContext from "./ApiContext/Provider";
+import ScreenContext from "./ScreenContext/Provider";
 import LanguageContext from "./LanguageContext/Provider";
 // Main App
 import App from "../App";
 // App
 const AppProvider = () => {
   return (
-    <GeneralContext>
-      <LanguageContext>
-        <App />
-      </LanguageContext>
-    </GeneralContext>
+    <ApiContext>
+      <ScreenContext>
+        <LanguageContext>
+          <App />
+        </LanguageContext>
+      </ScreenContext>
+    </ApiContext>
   );
 };
 
