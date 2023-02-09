@@ -10,10 +10,12 @@ const Search = () => {
   const { screenSize } = useContext(ScreenContext);
 
   return (
-    <input
-      className={`${screenSize === "Mobile" ? "search-input-xs" : "search-input"}`}
-      placeholder={siteLanguage && siteLanguage.Components.layoutsContent.HeaderContent.Search.placeholder}
-    ></input>
+    <form>
+      <input
+        className={`${screenSize === "Mobile" ? "search-input-xs" : "search-input"}`}
+        placeholder={siteLanguage && siteLanguage.Components.layoutsContent.HeaderContent.Search.placeholder}
+      />
+    </form>
   );
 };
 
