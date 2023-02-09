@@ -12,8 +12,6 @@ import "./style.css";
 const HeaderOptions = () => {
   const { siteLanguage } = useContext(LanguageContext);
 
-  console.log("siteLanguage", siteLanguage);
-
   const items = [
     {
       key: "1",
@@ -46,12 +44,12 @@ const HeaderOptions = () => {
         items,
       }}
     >
-      <a onClick={(e) => e.preventDefault()}>
+      <div onClick={(e) => e.preventDefault()}>
         <Space>
           {siteLanguage && siteLanguage.Components.layoutsContent.HeaderContent.HeaderOptions.Mobile.spanMenu}
           <AiOutlineDown />
         </Space>
-      </a>
+      </div>
     </Dropdown>
   );
 };
