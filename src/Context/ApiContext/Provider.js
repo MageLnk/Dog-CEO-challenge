@@ -6,7 +6,7 @@ import apiCall from "../../utilities/api/apiCall";
 
 const ApiContextProvider = ({ children }) => {
   const [dogHomeImages, setDogHomeImages] = useState([]);
-  const [dogWithoutSubBreedImgs, setDogWithoutsubBreedImgs] = useState([]);
+  const [dogsImgsForCards, setDogsImgsForCards] = useState([]);
 
   const [activeBreedToFilter, setActiveBreedToFilter] = useState([]);
   const [activeSubBreedsToFilter, setActiveSubBreedsToFilter] = useState([]);
@@ -29,9 +29,23 @@ const ApiContextProvider = ({ children }) => {
         alert("Algo ha ocurrido. Inténtelo nuevamente");
         return;
       }
-      let newArray = dogWithoutSubBreedImgs;
+      let newArray = dogsImgsForCards;
       newArray.push({ name: breed, subBreed: subBreed, results: [...data.message] });
-      setDogWithoutsubBreedImgs([...newArray]);
+      setDogsImgsForCards([...newArray]);
+    } catch (e) {
+      alert("Un error ha ocurrido. Por favor actualice la página");
+    }
+  };
+  const loadImagesForDogsWithSubBreed = async (breed, subBreed) => {
+    try {
+      const data = await apiCall({ url: `https://dog.ceo/api/breed/${breed}/${subBreed}/images/random/4` });
+      if (!data) {
+        alert("Algo ha ocurrido. Inténtelo nuevamente");
+        return;
+      }
+      let newArray = dogsImgsForCards;
+      newArray.push({ name: breed, subBreed: subBreed, results: [...data.message] });
+      setDogsImgsForCards([...newArray]);
     } catch (e) {
       alert("Un error ha ocurrido. Por favor actualice la página");
     }
@@ -63,7 +77,6 @@ const ApiContextProvider = ({ children }) => {
       }
     } catch (e) {
       alert("Un error ha ocurrido. Por favor actualice la página");
-      console.error(e);
     }
   };
 
@@ -92,19 +105,23 @@ const ApiContextProvider = ({ children }) => {
     const indexSubBreed = allSubBreeds.filter((target) => target.name !== breedName);
     setAllSubBreeds([...indexSubBreed]);
     // Acá borramos las fotos
-    const indexImgsBreed = dogWithoutSubBreedImgs.filter((target) => target.name !== breedName);
-    setDogWithoutsubBreedImgs([...indexImgsBreed]);
+    const indexImgsDogs = dogsImgsForCards.filter((target) => target.name !== breedName);
+    setDogsImgsForCards([...indexImgsDogs]);
   };
-  const selectSubBreed = (subBreed) => {
+  const selectSubBreed = (breed, subBreed) => {
     let newArray = activeSubBreedsToFilter;
     const indexSubBreed = newArray.indexOf(subBreed);
     // Si la sub-raza es -1, es porque es nueva. Entonces la agrega.
     if (indexSubBreed === -1) {
       newArray.push(subBreed);
       setActiveSubBreedsToFilter([...newArray]);
+      // Ya que agregamos un filtro de sub-raza, llamemos de inmediato a la API
+      loadImagesForDogsWithSubBreed(breed, subBreed);
       return;
     }
-    // Si no, la borra
+    // Si no, la borra, incluído las fotos
+    const indexImgsDogs = dogsImgsForCards.filter((target) => target.subBreed !== subBreed);
+    setDogsImgsForCards([...indexImgsDogs]);
     newArray.splice(indexSubBreed, 1);
     setActiveSubBreedsToFilter([...newArray]);
   };
@@ -120,7 +137,7 @@ const ApiContextProvider = ({ children }) => {
         allSubBreeds,
         dogHomeImages,
         activeBreedToFilter,
-        dogWithoutSubBreedImgs,
+        dogsImgsForCards,
         activeSubBreedsToFilter,
         handleInput,
         getAllBreeds,

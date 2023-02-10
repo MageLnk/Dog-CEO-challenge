@@ -4,13 +4,15 @@ import ApiContext from "../../Context/ApiContext";
 // Style
 import { Card } from "antd";
 import "./style.css";
+// Utils
+import mayusFirstLetter from "../../utilities/mayusfirstLetter";
 // App
 const DeployCards = () => {
-  const { dogWithoutSubBreedImgs } = useContext(ApiContext);
+  const { dogsImgsForCards } = useContext(ApiContext);
 
-  const showCards = (array) => array.map((result) => deployCards(result.name, result.results));
+  const showCards = (array) => array.map((result) => deployCards(result.name, result.subBreed, result.results));
 
-  const deployCards = (name, array) => {
+  const deployCards = (name, subBreed, array) => {
     return array.map((result) => (
       <Card
         key={result}
@@ -22,9 +24,9 @@ const DeployCards = () => {
         cover={<img alt="dogs" src={`${result}`} />}
       >
         <div className="card-information-container">
-          <span className="card-information-title">Raza: {name}</span>
+          <span className="card-information-title">Raza: {mayusFirstLetter(name)}</span>
           <div className="card-information-deeper">
-            {result.subBreed ? <span>Sub-raza: ${result.subBreed}</span> : <div></div>}
+            {subBreed ? <span>Sub-raza: {mayusFirstLetter(subBreed)}</span> : <div></div>}
             <span>corazón</span>
           </div>
         </div>
@@ -32,11 +34,9 @@ const DeployCards = () => {
     ));
   };
 
-  console.log("dogWithoutSubBreedImgs", dogWithoutSubBreedImgs);
-
   return (
     <div className="card-content-container">
-      {!dogWithoutSubBreedImgs ? <h2>Ups! Aún no realiza ninguna búsqueda</h2> : showCards(dogWithoutSubBreedImgs)}
+      {dogsImgsForCards.length === 0 ? <h2>Ups! Aún no realiza ninguna búsqueda</h2> : showCards(dogsImgsForCards)}
     </div>
   );
 };

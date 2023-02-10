@@ -18,18 +18,19 @@ const DeploySubBreedFilters = () => {
   };
 
   const showFilters = (array) => {
+    //console.log("Viendo algo", array);
     return array.map((result) => (
       <div key={result.name} className="search-pet-sub-breed-filter-container">
         <span className="search-pet-sub-breed-filter-title">
           <b>{mayusFirstLetter(result.name)}</b>
         </span>
-        <div className="search-pet-sub-breed-filter-list">{deployFilters(result.results)}</div>
+        <div className="search-pet-sub-breed-filter-list">{deployFilters(result.name, result.results)}</div>
       </div>
     ));
   };
-  const deployFilters = (array) => {
+  const deployFilters = (breed, array) => {
     return array.map((result) => (
-      <span key={result} className={checkSelectionOfSubBreed(result)} onClick={() => selectSubBreed(result)}>
+      <span key={result} className={checkSelectionOfSubBreed(result)} onClick={() => selectSubBreed(breed, result)}>
         {mayusFirstLetter(result)}
       </span>
     ));
