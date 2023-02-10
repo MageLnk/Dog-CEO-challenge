@@ -6,9 +6,12 @@ import apiCall from "../../utilities/api/apiCall";
 
 const ApiContextProvider = ({ children }) => {
   const [dogHomeImages, setDogHomeImages] = useState([]);
-  const [breedToFilter, setBreedToFilter] = useState([]);
-  const [subBreedToFilter, setSubBreedToFilter] = useState([]);
-  const [handleAllSubBreeds, setHandleAllSubBreeds] = useState({});
+
+  const [activeBreedToFilter, setActiveBreedToFilter] = useState([]);
+  const [activeSubBreedsToFilter, setActiveSubBreedsToFilter] = useState([]);
+
+  const [allSubBreeds, setAllSubBreeds] = useState([]);
+  const [allBreeds, setAllBreeds] = useState({});
 
   const loadImagesForHome = async () => {
     try {
@@ -19,13 +22,24 @@ const ApiContextProvider = ({ children }) => {
     }
   };
 
-  const getSubBreeds = async (breed) => {
+  const loadAllBreeds = async () => {
     try {
-      console.log("subBreed", breed);
+      const data = await apiCall({ url: `https://dog.ceo/api/breeds/list/all` });
+      if (data) setAllBreeds(data.message);
+    } catch (e) {
+      alert("Un error ha ocurrido. Por favor actualice la página");
+    }
+  };
+
+  const getAllSubBreeds = async (breed) => {
+    try {
       const data = await apiCall({ url: `https://dog.ceo/api/breed/${breed}/list` });
-      console.log("Data", data.message.hound);
-      console.log("Data dos", data.message.breed);
-      if (data) setHandleAllSubBreeds({ name: breed, results: [...data.message.breed] });
+
+      if (data) {
+        let newArray = allSubBreeds;
+        newArray.push({ name: breed, results: [...data.message[`${breed}`]] });
+        setAllSubBreeds([...newArray]);
+      }
     } catch (e) {
       alert("Un error ha ocurrido. Por favor actualice la página");
       console.error(e);
@@ -33,16 +47,23 @@ const ApiContextProvider = ({ children }) => {
   };
 
   const handleInput = async (breed) => {
-    await getSubBreeds(breed);
-    let newArray = breedToFilter;
-    newArray.push(breed);
-    setBreedToFilter([...newArray]);
+    const breedLowerCase = breed.toLowerCase();
+    const checkForBreed = Object.keys(allBreeds).filter((keyObject) => keyObject === breedLowerCase);
+    if (checkForBreed.length === 0) {
+      alert("La raza ingresada no corresponde");
+      return;
+    }
+    // Agregar el validador si es que se repite
+    await getAllSubBreeds(breedLowerCase);
+    let newArray = activeBreedToFilter;
+    newArray.push(breedLowerCase);
+    setActiveBreedToFilter([...newArray]);
   };
 
-  const deleteFilter = (type, filterName) => {
+  const deleteFilters = (type, filterName) => {
     if (type === "Breed") {
-      const index = breedToFilter.indexOf(filterName);
-      const newArray = breedToFilter.splice(index, 1);
+      const index = activeBreedToFilter.indexOf(filterName);
+      const newArray = activeBreedToFilter.splice(index, 1);
       setDogHomeImages([...newArray]);
     }
   };
@@ -52,7 +73,9 @@ const ApiContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <ApiContext.Provider value={{ dogHomeImages, breedToFilter, subBreedToFilter, handleInput, deleteFilter }}>
+    <ApiContext.Provider
+      value={{ loadAllBreeds, dogHomeImages, activeBreedToFilter, allSubBreeds, handleInput, deleteFilters }}
+    >
       {children}
     </ApiContext.Provider>
   );
