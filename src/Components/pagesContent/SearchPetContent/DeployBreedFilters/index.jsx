@@ -13,7 +13,7 @@ const DeployBreedFilters = () => {
     return array.map((result) => (
       <span key={result} className="search-pet-filter">
         <b>{mayusFirstLetter(result)}</b>{" "}
-        <span className="search-pet-filter-delete" onClick={() => deleteFilters("Breed", result)}>
+        <span className="search-pet-filter-delete" onClick={() => deleteFilters(result)}>
           X
         </span>
       </span>

@@ -11,7 +11,7 @@ const DeploySubBreedFilters = () => {
 
   const showFilters = (array) => {
     return array.map((result) => (
-      <div key={result} className="search-pet-sub-breed-filter-container">
+      <div key={result.name} className="search-pet-sub-breed-filter-container">
         <span className="search-pet-sub-breed-filter-title">
           <b>{mayusFirstLetter(result.name)}</b>
         </span>
@@ -23,7 +23,7 @@ const DeploySubBreedFilters = () => {
   const deployFilters = (array) => {
     return array.map((result) => (
       <span key={result} className="search-pet-filter">
-        {result}
+        {mayusFirstLetter(result)}
       </span>
     ));
   };
@@ -31,6 +31,7 @@ const DeploySubBreedFilters = () => {
   return (
     <div className="search-pet-sub-breed-container">
       <h4>Sub-razas</h4>
+
       {showFilters(allSubBreeds)}
     </div>
   );

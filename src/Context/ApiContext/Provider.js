@@ -60,12 +60,12 @@ const ApiContextProvider = ({ children }) => {
     setActiveBreedToFilter([...newArray]);
   };
 
-  const deleteFilters = (type, filterName) => {
-    if (type === "Breed") {
-      const index = activeBreedToFilter.indexOf(filterName);
-      const newArray = activeBreedToFilter.splice(index, 1);
-      setDogHomeImages([...newArray]);
-    }
+  const deleteFilters = (breedName) => {
+    const indexBreed = activeBreedToFilter.indexOf(breedName);
+    const newArrayBreed = activeBreedToFilter.splice(indexBreed, 1);
+    setDogHomeImages([...newArrayBreed]);
+    const indexSubBreed = allSubBreeds.filter((target) => target.name != breedName);
+    setAllSubBreeds([...indexSubBreed]);
   };
 
   useEffect(() => {
