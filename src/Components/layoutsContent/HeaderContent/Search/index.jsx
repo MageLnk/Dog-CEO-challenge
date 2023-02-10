@@ -29,6 +29,7 @@ const Search = () => {
   return (
     <form typeof="submit" onSubmit={(event) => handleSubmit(event)}>
       <input
+        aria-label="dog-input"
         value={inputValue}
         className={`${screenSize === "Mobile" ? "search-input-xs" : "search-input"}`}
         placeholder={siteLanguage && siteLanguage.Components.layoutsContent.HeaderContent.Search.placeholder}
