@@ -1,7 +1,9 @@
 import { useContext } from "react";
 // Contexts
 import ApiContext from "../../Context/ApiContext";
+import LanguageContext from "../../Context/LanguageContext";
 // Style
+import { AiTwotoneHeart } from "react-icons/ai";
 import { Card } from "antd";
 import "./style.css";
 // Utils
@@ -9,6 +11,7 @@ import mayusFirstLetter from "../../utilities/mayusfirstLetter";
 // App
 const DeployCards = () => {
   const { dogsImgsForCards } = useContext(ApiContext);
+  const { siteLanguage } = useContext(LanguageContext);
 
   const showCards = (array) => array.map((result) => deployCards(result.name, result.subBreed, result.results));
 
@@ -24,10 +27,20 @@ const DeployCards = () => {
         cover={<img alt="dogs" src={`${result}`} />}
       >
         <div className="card-information-container">
-          <span className="card-information-title">Raza: {mayusFirstLetter(name)}</span>
+          <span className="card-information-title">
+            {siteLanguage && siteLanguage.Components.deployCards.spanBreed}: {mayusFirstLetter(name)}
+          </span>
           <div className="card-information-deeper">
-            {subBreed ? <span>Sub-raza: {mayusFirstLetter(subBreed)}</span> : <div></div>}
-            <span>corazón</span>
+            {subBreed ? (
+              <span>
+                {siteLanguage && siteLanguage.Components.deployCards.spanSubBreed}: {mayusFirstLetter(subBreed)}
+              </span>
+            ) : (
+              <div></div>
+            )}
+            <span>
+              <AiTwotoneHeart />
+            </span>
           </div>
         </div>
       </Card>
@@ -36,7 +49,11 @@ const DeployCards = () => {
 
   return (
     <div className="card-content-container">
-      {dogsImgsForCards.length === 0 ? <h2>Ups! Aún no realiza ninguna búsqueda</h2> : showCards(dogsImgsForCards)}
+      {dogsImgsForCards.length === 0 ? (
+        <h2>{siteLanguage && siteLanguage.Components.deployCards.searchNotFoundH2}</h2>
+      ) : (
+        showCards(dogsImgsForCards)
+      )}
     </div>
   );
 };

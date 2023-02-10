@@ -1,5 +1,10 @@
 const es = {
   Components: {
+    deployCards: {
+      searchNotFoundH2: "¡Ups! Sin búsqueda todavía",
+      spanBreed: "Raza",
+      spanSubBreed: "Sub-Raza",
+    },
     pagesContent: {
       HomeContent: {
         title: "Bienvenido a Dog-CEO",
@@ -8,6 +13,14 @@ const es = {
           title: "¡Empieza tu búsqueda ahora!",
           subtitle: "¡No pierdas más el tiempo y encuentra a tu mejor amigo!",
         },
+      },
+      SearchPetContent: {
+        DeployBreedFilters: {
+          breedH4: "Razas",
+        },
+      },
+      DeploySubBreedFilters: {
+        subBreedH4: "Sub-Razas",
       },
     },
     layoutsContent: {
