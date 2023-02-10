@@ -11,14 +11,16 @@ a:active {
   color: inherit;
 }
 :root {
-  --bg-light-color: #F2F5FB;
-  --bg-dark-color: #20345A;
+  --bg-light-color: #f2f5fb;
+  --bg-dark-color: #20345a;
   --bg-pets-color: #01408d;
-  --bg-white-color: #FFFFFF;
-  --text-light-color: #FFFFFF;
+  --bg-white-color: #ffffff;
+  --text-light-color: #ffffff;
   --text-dark-color: #222732;
-  --text-special-color:#003473;
-  --text-special-color-important:#0051b4;
+  --text-special-color: #003473;
+  --text-special-color-important: #0051b4;
+  --special-color-green: #b9d478;
+  --special-color-red: #e76464;
 }
 
 .header-layout-container {
@@ -31,10 +33,10 @@ a:active {
 .home-page-container {
   grid-area: main-content;
 }
-.favorites-pets-page-container{
+.favorites-pets-page-container {
   grid-area: main-content;
 }
-.search-pet-page-container{
+.search-pet-page-container {
   grid-area: main-content;
 }
 

@@ -1,0 +1,49 @@
+.search-pet-sub-breed-container {
+  padding: 0 1rem 0 1rem;
+}
+.search-pet-sub-breed-container .search-pet-sub-breed-filter-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-pet-sub-breed-container .search-pet-sub-breed-filter-container .search-pet-sub-breed-filter-title {
+  font-size: 12px;
+  margin: 0.5rem 0 0.5rem 0;
+}
+.search-pet-sub-breed-container .search-pet-sub-breed-filter-container .search-pet-sub-breed-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-pet-sub-breed-container
+  .search-pet-sub-breed-filter-container
+  .search-pet-sub-breed-filter-list
+  .search-pet-filter {
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  margin: 0 1rem 1rem 1rem;
+  background-color: var(--special-color-red);
+  color: var(--text-light-color);
+  border-radius: 8px;
+}
+.search-pet-sub-breed-container
+  .search-pet-sub-breed-filter-container
+  .search-pet-sub-breed-filter-list
+  .search-pet-filter:hover {
+  cursor: pointer;
+}
+
+.search-pet-sub-breed-container
+  .search-pet-sub-breed-filter-container
+  .search-pet-sub-breed-filter-list
+  .search-pet-filter-selected {
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  margin: 0 1rem 1rem 1rem;
+  background-color: var(--special-color-green);
+  border-radius: 8px;
+}
+.search-pet-sub-breed-container
+  .search-pet-sub-breed-filter-container
+  .search-pet-sub-breed-filter-list
+  .search-pet-filter-selected:hover {
+  cursor: pointer;
+}
