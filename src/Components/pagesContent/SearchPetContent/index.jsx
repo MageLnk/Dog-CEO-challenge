@@ -8,10 +8,10 @@ import DeploySubBreedFilters from "./DeploySubBreedFilters";
 import "./style.css";
 // App
 const SearchPetContent = () => {
-  const { activeBreedToFilter, loadAllBreeds } = useContext(ApiContext);
+  const { activeBreedToFilter, getAllBreeds } = useContext(ApiContext);
 
   useEffect(() => {
-    loadAllBreeds();
+    getAllBreeds();
     // Solo es necesario que se cargue UNA VEZ cuando entre a la página search y no saturar el server.
     // eslint-disable-next-line
   }, []);

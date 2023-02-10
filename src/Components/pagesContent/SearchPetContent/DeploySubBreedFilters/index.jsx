@@ -7,7 +7,15 @@ import "./style.css";
 import mayusFirstLetter from "../../../../utilities/mayusfirstLetter";
 // App
 const DeploySubBreedFilters = () => {
-  const { allSubBreeds } = useContext(ApiContext);
+  const { allSubBreeds, selectSubBreed, activeSubBreedsToFilter } = useContext(ApiContext);
+
+  const checkSelectionOfSubBreed = (subBreed) => {
+    const checkSelection = activeSubBreedsToFilter.filter((result) => result === subBreed);
+    if (checkSelection.length === 0) {
+      return "search-pet-filter";
+    }
+    return "search-pet-filter-selected";
+  };
 
   const showFilters = (array) => {
     return array.map((result) => (
@@ -19,10 +27,9 @@ const DeploySubBreedFilters = () => {
       </div>
     ));
   };
-
   const deployFilters = (array) => {
     return array.map((result) => (
-      <span key={result} className="search-pet-filter">
+      <span key={result} className={checkSelectionOfSubBreed(result)} onClick={() => selectSubBreed(result)}>
         {mayusFirstLetter(result)}
       </span>
     ));
