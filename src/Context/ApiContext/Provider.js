@@ -6,6 +6,7 @@ import apiCall from "../../utilities/api/apiCall";
 
 const ApiContextProvider = ({ children }) => {
   const [dogHomeImages, setDogHomeImages] = useState([]);
+  const [dogWithoutSubBreedImgs, setDogWithoutsubBreedImgs] = useState([]);
 
   const [activeBreedToFilter, setActiveBreedToFilter] = useState([]);
   const [activeSubBreedsToFilter, setActiveSubBreedsToFilter] = useState([]);
@@ -21,6 +22,20 @@ const ApiContextProvider = ({ children }) => {
       alert("Un error ha ocurrido. Por favor actualice la página");
     }
   };
+  const loadImagesForDogsWithoutSubBreed = async (breed, subBreed = "") => {
+    try {
+      const data = await apiCall({ url: `https://dog.ceo/api/breed/${breed}/images/random/4` });
+      if (!data) {
+        alert("Algo ha ocurrido. Inténtelo nuevamente");
+        return;
+      }
+      let newArray = dogWithoutSubBreedImgs;
+      newArray.push({ name: breed, subBreed: subBreed, results: [...data.message] });
+      setDogWithoutsubBreedImgs([...newArray]);
+    } catch (e) {
+      alert("Un error ha ocurrido. Por favor actualice la página");
+    }
+  };
 
   const getAllBreeds = async () => {
     try {
@@ -30,14 +45,21 @@ const ApiContextProvider = ({ children }) => {
       alert("Un error ha ocurrido. Por favor actualice la página");
     }
   };
-
   const getAllSubBreeds = async (breed) => {
     try {
       const data = await apiCall({ url: `https://dog.ceo/api/breed/${breed}/list` });
-      if (data) {
-        let newArray = allSubBreeds;
-        newArray.push({ name: breed, results: [...data.message[`${breed}`]] });
-        setAllSubBreeds([...newArray]);
+      if (!data) {
+        alert("Por favor, inténtelo nuevamente");
+        return;
+      }
+      let newArray = allSubBreeds;
+      newArray.push({ name: breed, results: [...data.message[`${breed}`]] });
+      setAllSubBreeds([...newArray]);
+      // Ahora necesito checkear si la raza tiene o no tiene sub-raza para traer inmediatamente fotos
+      const lastNameOnNewArray = newArray[newArray.length - 1].name;
+      const lastResultOnNewArray = newArray[newArray.length - 1].results.length === 0;
+      if (lastResultOnNewArray) {
+        loadImagesForDogsWithoutSubBreed(lastNameOnNewArray);
       }
     } catch (e) {
       alert("Un error ha ocurrido. Por favor actualice la página");
@@ -52,9 +74,10 @@ const ApiContextProvider = ({ children }) => {
       alert("La raza ingresada no corresponde");
       return;
     }
+    // Pendiente de agregar el validador, si es que se repite la misma entrada en el input
+
     // La siguiente línea, es para apurar el momento de agregar la raza, traemos todas las sub-razas para mostrarlas.
     await getAllSubBreeds(breedLowerCase);
-    // Pendiente de agregar el validador, si es que se repite la misma entrada en el input
     let newArray = activeBreedToFilter;
     newArray.push(breedLowerCase);
     setActiveBreedToFilter([...newArray]);
@@ -68,8 +91,10 @@ const ApiContextProvider = ({ children }) => {
     // Acá borramos la sub-raza relacionada a la raza, obviamente
     const indexSubBreed = allSubBreeds.filter((target) => target.name !== breedName);
     setAllSubBreeds([...indexSubBreed]);
+    // Acá borramos las fotos
+    const indexImgsBreed = dogWithoutSubBreedImgs.filter((target) => target.name !== breedName);
+    setDogWithoutsubBreedImgs([...indexImgsBreed]);
   };
-
   const selectSubBreed = (subBreed) => {
     let newArray = activeSubBreedsToFilter;
     const indexSubBreed = newArray.indexOf(subBreed);
@@ -86,6 +111,7 @@ const ApiContextProvider = ({ children }) => {
 
   useEffect(() => {
     loadImagesForHome();
+    getAllBreeds();
   }, []);
 
   return (
@@ -94,6 +120,7 @@ const ApiContextProvider = ({ children }) => {
         allSubBreeds,
         dogHomeImages,
         activeBreedToFilter,
+        dogWithoutSubBreedImgs,
         activeSubBreedsToFilter,
         handleInput,
         getAllBreeds,

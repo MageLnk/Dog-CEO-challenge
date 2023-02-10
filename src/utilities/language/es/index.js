@@ -13,7 +13,7 @@ const es = {
     layoutsContent: {
       HeaderContent: {
         Search: {
-          placeholder: "Escriba el tipo de raza o sub-raza del perro",
+          placeholder: "Escriba el tipo de raza del perro",
         },
         HeaderOptions: {
           spanSearch: "Buscar",

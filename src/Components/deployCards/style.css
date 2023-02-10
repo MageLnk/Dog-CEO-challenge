@@ -1,0 +1,25 @@
+.card-content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-content-container .ant-card-body {
+  padding: 0.5rem;
+}
+
+.card-content-container .ant-card-body .card-information-container {
+  text-align: center;
+}
+.card-content-container .ant-card-cover img {
+  height: 250px;
+}
+.card-content-container .ant-card-body .card-information-container .card-information-title {
+  font-weight: 600;
+}
+
+.card-content-container .ant-card-body .card-information-container .card-information-deeper {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0 0 0;
+}

@@ -13,7 +13,7 @@ const en = {
     layoutsContent: {
       HeaderContent: {
         Search: {
-          placeholder: "Write type dog breed or sub-breed",
+          placeholder: "Write type dog breed",
         },
         HeaderOptions: {
           spanSearch: "Search",
