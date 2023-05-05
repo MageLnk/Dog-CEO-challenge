@@ -66,8 +66,10 @@ const ApiContextProvider = ({ children }) => {
         alert("Por favor, inténtelo nuevamente");
         return;
       }
+
       let newArray = allSubBreeds;
-      newArray.push({ name: breed, results: [...data.message[`${breed}`]] });
+      //debugger;
+      newArray.push({ name: breed, results: data.message });
       setAllSubBreeds([...newArray]);
       // Ahora necesito checkear si la raza tiene o no tiene sub-raza para traer inmediatamente fotos
       const lastNameOnNewArray = newArray[newArray.length - 1].name;
